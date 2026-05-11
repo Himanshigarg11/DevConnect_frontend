@@ -10,6 +10,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [emailID,setEmailId]=useState("himanshigarg1115@gmail.com");
   const [password,setPassword]=useState("Himanshi@123");
+  const [error,setError]=useState("")
+
   const dispatch = useDispatch();
   const navigate=useNavigate();
 
@@ -22,6 +24,7 @@ const Login = () => {
       return navigate("/")
       }
         catch(err){
+            setError(err?.response?.data|| "something went wrong")
              console.log(err.response.data);
         }
   };
@@ -85,7 +88,7 @@ const Login = () => {
               </button>
             </div>
           </div>
-
+          <p className="text-red-500">{error}</p><br></br>
           {/* Button */}
           <button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-[1.02]"
              onClick={handleLogin}>
