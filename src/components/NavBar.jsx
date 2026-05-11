@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 const NavBar = () => {
 
   const user = useSelector((store) => store.user);
@@ -12,9 +12,9 @@ const NavBar = () => {
       {/* Left Side */}
       <div className="flex-1">
 
-        <a className="btn btn-ghost text-2xl font-bold text-white">
+        <Link to="/" className="btn btn-ghost text-2xl font-bold text-white">
           👩‍💻 DevTinder
-        </a>
+        </Link>
 
       </div>
 
@@ -58,7 +58,7 @@ const NavBar = () => {
             >
 
               <li>
-                <a>Profile</a>
+                <Link to="/profile">Profile</Link>
               </li>
 
               <li>
@@ -66,7 +66,7 @@ const NavBar = () => {
               </li>
 
               <li>
-                <a>Logout</a>
+                <Link to="/login">Logout</Link>
               </li>
 
             </ul>
