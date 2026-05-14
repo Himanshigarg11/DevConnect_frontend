@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../utils/userSlice";
+import { FaUserClock } from "react-icons/fa";
 import axios from "axios";
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -78,8 +79,14 @@ const NavBar = () => {
                 </Link>
               </li>
 
-              <li>
-                <Link to="/connections">🤝 Connections</Link>
+              <li className="mb-1">
+                <Link to="/connections" 
+                 className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300">🤝 Friends</Link>
+              </li>
+
+               <li className="mb-1">
+                <Link to="/request"
+                 className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300">📩 Requests</Link>
               </li>
 
               <li className="mb-1">
