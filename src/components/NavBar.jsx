@@ -1,100 +1,118 @@
 import React from "react";
-import {useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../utils/userSlice";
 import axios from "axios";
 const NavBar = () => {
-
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogout=async()=>{
-    try{
-      const res=await axios.post(BASE_URL+"/logout",{},
-        {withCredentials:true});
-        dispatch(removeUser())
-        return navigate("/login")
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/logout",
+        {},
+        { withCredentials: true },
+      );
+      dispatch(removeUser());
+      return navigate("/login");
+    } catch (err) {
+      console.log(err);
     }
-    catch(err){
-      console.log(err)
-    }
-  }
+  };
 
   return (
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-xl">
+      <div className="w-full px-1 md:px-14 py-6 flex items-center justify-between">
+        {/* LEFT SIDE */}
+        <Link
+          to={user ? "/feed" : "/login"}
+          className="flex items-center gap-4 group"
+        >
+          <div className="text-3xl">👩‍💻</div>
 
-    <div className="navbar bg-base-300 shadow-sm px-4">
-
-      {/* Left Side */}
-      <div className="flex-1">
-
-        <Link to="/" className="btn btn-ghost text-2xl font-bold text-white">
-          👩‍💻 DevTinder
+          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition duration-300">
+            DevTinder
+          </h1>
         </Link>
 
-      </div>
-
-      {/* Right Side */}
-      <div className="flex items-center">
-
+        {/* RIGHT SIDE */}
         {user && (
-
-          <div className="dropdown dropdown-end mr-4">
-
-            {/* User Info + Avatar */}
-            <div className="flex items-center gap-3">
-
-              <p className="text-gray-200 font-medium">
+          <div className="dropdown dropdown-end">
+            {/* USER INFO */}
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex items-center gap-4 cursor-pointer hover:bg-white/5 px-3 py-2 rounded-2xl transition-all duration-300"
+            >
+              <p className="text-gray-200 font-medium hidden md:block">
                 Welcome, {user.firstName}
               </p>
 
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-
-                <div className="w-11 rounded-full border border-gray-600">
-
+              <div className="avatar">
+                <div className="w-14 rounded-full border-2 border-indigo-400 shadow-lg shadow-indigo-500/20">
                   <img
                     alt="profile"
-                    src={user.photoURL}
+                    src={
+                      user.photoURL ||
+                      "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    }
                   />
-
                 </div>
-
               </div>
-
             </div>
 
-            {/* Dropdown */}
+            {/* DROPDOWN */}
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-4 z-[1] p-3 shadow-2xl bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl w-56 text-gray-200"
             >
-
-              <li>
-                <Link to="/profile">Profile</Link>
+              <li className="mb-1">
+                <Link
+                  to="/"
+                  className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300"
+                >
+                  🖥️ Home
+                </Link>
               </li>
 
               <li>
-                <a>Settings</a>
+                <Link to="/connections">🤝 Connections</Link>
+              </li>
+
+              <li className="mb-1">
+                <Link
+                  to="/profile"
+                  className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300"
+                >
+                  👤 Profile
+                </Link>
+              </li>
+
+              <li className="mb-1">
+                <Link
+                  to="/settings"
+                  className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300"
+                >
+                  ⚙️ Settings
+                </Link>
               </li>
 
               <li>
-                <a onClick={handleLogout}>Logout</a>
+                <a
+                  onClick={handleLogout}
+                  className="rounded-xl hover:bg-red-500/20 hover:text-red-400"
+                >
+                  🚪 Logout
+                </a>
               </li>
-
             </ul>
-
           </div>
-
         )}
-
       </div>
-
-    </div>
+    </nav>
   );
 };
 

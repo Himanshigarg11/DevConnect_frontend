@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [emailID,setEmailId]=useState("himanshigarg1115@gmail.com");
-  const [password,setPassword]=useState("Himanshi@123");
+  const [password,setPassword]=useState("Himanshi@11");
   const [error,setError]=useState("")
-
+  const name = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate=useNavigate();
 
@@ -20,8 +20,8 @@ const Login = () => {
         const res=await axios.post(BASE_URL+"/login",{
           emailID, password,
         },{withCredentials:true});
-      dispatch(addUser(res.data.data))
-      return navigate("/")
+       dispatch(addUser(res.data.data))
+        return navigate("/feed")
       }
         catch(err){
             setError(err?.response?.data|| "something went wrong")
@@ -107,9 +107,9 @@ const Login = () => {
           {/* Register */}
           <p className="text-center text-gray-400 text-sm">
             Don’t have an account?
-            <span className="text-indigo-400 ml-2 cursor-pointer hover:text-indigo-300">
+            <Link to="/signup" className="text-indigo-400 ml-2 cursor-pointer hover:text-indigo-300">
               Register
-            </span>
+            </Link>
           </p>
         </div>
       </div>
