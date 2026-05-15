@@ -27,11 +27,14 @@ const EditProfile = ({ user }) => {
         {
           firstName,
           lastName,
-          age,
+          age: Number(age),
           gender,
           photoURL: photoUrl,
           about,
-          skills: skills.split(",").map((s) => s.trim()),
+          skills: skills
+            .split(",")
+            .map((s) => s.trim())
+            .filter((s) => s !== ""),
         },
         { withCredentials: true },
       );
@@ -42,7 +45,7 @@ const EditProfile = ({ user }) => {
       }, 3000);
     } catch (err) {
       setSuccess("");
-      setError(err.response.data.message);
+    setError(err?.response?.data?.message || "Something went wrong");
 
       console.log(err);
     }
@@ -130,7 +133,7 @@ const EditProfile = ({ user }) => {
                   <option value="">Select</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                  <option value="others">Others</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>

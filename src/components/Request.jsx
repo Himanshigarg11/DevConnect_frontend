@@ -9,18 +9,37 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch,useSelector } from "react-redux";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests,removeRequests } from "../utils/requestSlice";
 
 const Request = () => {
 
-  const [search, setSearch] = useState("");
+const [search, setSearch] = useState("");
 const dispatch = useDispatch();
 const requests = useSelector(store => store.requests);
+
+const reviewRequest=async(status,_id)=>{
+  try{
+      const res=await axios.post(
+      BASE_URL+"/request/review/"+status+"/"+_id,
+      {},{withCredentials:true})
+ 
+      dispatch(removeRequests(_id))
+      console.log(res.data)
+     
+  }
+  catch(err){
+      console.log(err);
+   console.log(err.response);
+   console.log(err.message);
+  }
+}
 
   const fetchRequests=async()=>{
     try{
           const res=await axios.get(BASE_URL+"/user/requests",{withCredentials:true})
           dispatch(addRequests(res.data.data))
+          console.log(res.data)
+          console.log(res.data.data)
     }catch(err){
          console.log(err)
     }
@@ -194,7 +213,7 @@ const filteredRequests=requests.filter((user)=>(
               <div className="flex gap-4 mt-7">
 
                 {/* Accept */}
-                <button className="flex-1 h-12 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 font-semibold hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                <button onClick={() => reviewRequest("accepted", user._id)} className="flex-1 h-12 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 font-semibold hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
 
                   <FaCheck />
 
@@ -203,7 +222,7 @@ const filteredRequests=requests.filter((user)=>(
                 </button>
 
                 {/* Reject */}
-                <button className="flex-1 h-12 rounded-2xl border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                <button onClick={() => reviewRequest("rejected", user._id)} className="flex-1 h-12 rounded-2xl border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
 
                   <FaTimes />
 
