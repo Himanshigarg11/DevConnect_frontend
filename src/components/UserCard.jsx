@@ -6,19 +6,46 @@ import {
   FaHeart,
   FaTimes,
 } from "react-icons/fa";
-
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import {removeUserFromFeed} from "../utils/feedSlice"
+import axios from "axios";
+import toast from "react-hot-toast";
 const UserCard = ({ user }) => {
 
   const {
+    _id,
     firstName,
     lastName,
     age,
     gender,
-    about,
-    skills,
+    about,            
     photoUrl,
+    skills
   } = user;
+    const dispatch = useDispatch();
+   const sendRequest=async(status,toUserId)=>{
+        try{
+          const res=await axios.post(BASE_URL+"/request/send/"+status+"/"+toUserId,
+          {},{withCredentials:true})
+          dispatch(removeUserFromFeed(toUserId))
 
+    if(status === "interested"){
+      toast.success("Interest sent successfully ❤️");
+    }
+
+
+    if(status === "ignored"){
+      toast("User ignored ❌");
+    }
+        }
+        catch(err){
+         toast.error(err.response?.data || err.message);
+        }
+
+   }
+
+   
   return (
 
     <div className="w-[380px]">
@@ -136,7 +163,7 @@ const UserCard = ({ user }) => {
           <div className="flex gap-4 mt-10">
 
             {/* Ignore */}
-            <button className="flex-1 h-14 rounded-2xl border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 font-semibold">
+            <button onClick={()=>sendRequest("ignored",_id)} className="flex-1 h-14 rounded-2xl border border-red-500 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 font-semibold">
 
               <FaTimes />
 
@@ -145,7 +172,7 @@ const UserCard = ({ user }) => {
             </button>
 
             {/* Interested */}
-            <button className="flex-1 h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 font-semibold shadow-lg shadow-indigo-500/20">
+            <button onClick={()=>sendRequest("interested",_id)} className="flex-1 h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 font-semibold shadow-lg shadow-indigo-500/20">
 
               <FaHeart />
 

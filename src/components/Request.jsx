@@ -10,7 +10,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch,useSelector } from "react-redux";
 import { addRequests,removeRequests } from "../utils/requestSlice";
-
+import toast from "react-hot-toast";
 const Request = () => {
 
 const [search, setSearch] = useState("");
@@ -24,13 +24,16 @@ const reviewRequest=async(status,_id)=>{
       {},{withCredentials:true})
  
       dispatch(removeRequests(_id))
-      console.log(res.data)
-     
+
+      if(status === "accepted"){
+      toast.success("Request accepted ❤️");
+    }
+    if(status === "rejected"){
+      toast("Request rejected ❌");
+    }  
   }
   catch(err){
-      console.log(err);
-   console.log(err.response);
-   console.log(err.message);
+    toast.error(err.response?.data || err.message);
   }
 }
 

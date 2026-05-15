@@ -40,6 +40,9 @@ const Feed = () => {
 
   }, []);
 
+  
+
+
   return (
 
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950 text-white relative overflow-hidden px-4 py-10">
@@ -58,21 +61,21 @@ const Feed = () => {
 
             <div className="flex items-center gap-3 mb-4">
 
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
 
                 <FaFire className="text-2xl text-white" />
 
               </div>
 
-              <h1 className="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
 
-                Developer Feed
+                Connect with Developer
 
               </h1>
 
             </div>
 
-            <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
+            <p className="text-gray-400 text-md max-w-2xl leading-relaxed">
 
               Discover developers, explore skills, and build meaningful
               connections with people who match your interests.
