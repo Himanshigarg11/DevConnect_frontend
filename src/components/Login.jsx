@@ -8,8 +8,8 @@ import { useNavigate,Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [emailID,setEmailId]=useState("himanshigarg1115@gmail.com");
-  const [password,setPassword]=useState("Himanshi@11");
+  const [emailID,setEmailId]=useState("himanshigarg@gmail.com");
+  const [password,setPassword]=useState("Himanshi@123");
   const [error,setError]=useState("")
   const name = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -30,91 +30,147 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pb-24 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
-      <div className="w-full max-w-sm">
-        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-7 shadow-[0_0_35px_rgba(99,102,241,0.25)]">
-          {/* Heading */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-extrabold text-white">Login</h1>
+  <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950 flex justify-center items-center px-4 py-10 relative overflow-hidden text-white">
 
-            <p className="text-gray-400 mt-2 text-sm">
-              Welcome back to DevTinder
-            </p>
-          </div>
+    {/* Glow Effects */}
+    <div className="absolute top-10 left-10 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full"></div>
 
-          {/* Email */}
-          <div className="mb-5">
-            <label className="block text-gray-300 mb-2">Email ID</label>
+    <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/20 blur-[120px] rounded-full"></div>
 
-            <div className="relative">
-              <MdEmail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+    {/* Main Card */}
+    <div className="relative z-10 w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
 
-              <input
-                type="email"
-                value={emailID}
-                placeholder="Enter your email"
-                autoComplete="off"
-                className="w-full bg-slate-800 border border-gray-700 rounded-xl py-3 pl-11 pr-4 text-white outline-none focus:border-indigo-500 transition-all duration-300"
-                onChange={(e)=>
-                  setEmailId(e.target.value)
-                }
-              />
-      
-            </div>
-          </div>
+      {/* Heading */}
+      <div className="flex items-center justify-center gap-3 mb-4">
 
-          {/* Password */}
-          <div className="mb-6">
-            <label className="block text-gray-300 mb-2">Password</label>
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-4 rounded-full shadow-lg shadow-indigo-500/30">
 
-            <div className="relative">
-              <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+          <FaLock className="text-1xl text-white" />
 
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                placeholder="Enter your password"
-                autoComplete="new-password"
-                className="w-full bg-slate-800 border border-gray-700 rounded-xl py-3 pl-11 pr-11 text-white outline-none focus:border-indigo-500 transition-all duration-300"
-                onChange={(e)=>{setPassword(e.target.value)}}
-              />
+        </div>
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-          </div>
-          <p className="text-red-500">{error}</p><br></br>
-          {/* Button */}
-          <button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-[1.02]"
-             onClick={handleLogin}>
-            Login
+        <h1 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+
+          Login
+
+        </h1>
+
+      </div>
+
+      <p className="text-gray-400 text-center mb-8 text-lg">
+        Welcome back to DevTinder
+      </p>
+
+      {/* Email */}
+      <div className="mb-5">
+
+        <label className="block text-gray-300 mb-2">
+          Email Address
+        </label>
+
+        <div className="relative">
+
+          <MdEmail className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+
+          <input
+            type="email"
+            value={emailID}
+            placeholder="Enter your email"
+            autoComplete="off"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-14 pr-4 text-white outline-none focus:border-indigo-500 transition-all duration-300"
+            onChange={(e) => setEmailId(e.target.value)}
+          />
+
+        </div>
+
+      </div>
+
+      {/* Password */}
+      <div className="mb-5">
+
+        <label className="block text-gray-300 mb-2">
+          Password
+        </label>
+
+        <div className="relative">
+
+          <FaLock className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" />
+
+          <input
+            type={showPassword ? "text" : "password"}
+            value={password}
+            placeholder="Enter your password"
+            autoComplete="new-password"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-14 pr-14 text-white outline-none focus:border-indigo-500 transition-all duration-300"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+          >
+
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+
           </button>
 
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-5">
-            <div className="flex-1 h-[1px] bg-gray-700"></div>
-
-            <span className="text-gray-500 text-sm">OR</span>
-
-            <div className="flex-1 h-[1px] bg-gray-700"></div>
-          </div>
-
-          {/* Register */}
-          <p className="text-center text-gray-400 text-sm">
-            Don’t have an account?
-            <Link to="/signup" className="text-indigo-400 ml-2 cursor-pointer hover:text-indigo-300">
-              Register
-            </Link>
-          </p>
         </div>
+
       </div>
+
+      {/* Error */}
+      {
+        error && (
+          <p className="text-red-400 text-sm mb-5">
+            {error}
+          </p>
+        )
+      }
+
+      {/* Login Button */}
+      <button
+        className="w-full h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-indigo-500/20"
+        onClick={handleLogin}
+      >
+
+        Login
+
+      </button>
+
+      {/* Divider */}
+      <div className="flex items-center gap-3 my-7">
+
+        <div className="flex-1 h-[1px] bg-white/10"></div>
+
+        <span className="text-gray-500 text-sm">
+          OR
+        </span>
+
+        <div className="flex-1 h-[1px] bg-white/10"></div>
+
+      </div>
+
+      {/* Register */}
+      <p className="text-center text-gray-400">
+
+        Don’t have an account?
+
+        <Link
+          to="/signup"
+          className="text-indigo-400 ml-2 hover:text-indigo-300 font-semibold"
+        >
+
+          Register
+
+        </Link>
+
+      </p>
+
     </div>
-  );
+
+  </div>
+);
 };
 
 export default Login;

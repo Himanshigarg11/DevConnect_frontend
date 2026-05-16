@@ -20,7 +20,7 @@ const UserCard = ({ user }) => {
     age,
     gender,
     about,            
-    photoUrl,
+    photoURL,
     skills
   } = user;
     const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const UserCard = ({ user }) => {
 
           <img
             src={
-              photoUrl ||
+              photoURL ||
               "https://cdn-icons-png.flaticon.com/512/149/149071.png"
             }
             alt="user"

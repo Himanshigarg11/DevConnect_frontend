@@ -3,7 +3,7 @@ import { create } from "axios";
 
 const feedSlice=createSlice({
     name:"feed",
-    initialState:null,
+    initialState:[],
     reducers:{
         addFeed:(state,action)=>{
             return action.payload
@@ -11,9 +11,12 @@ const feedSlice=createSlice({
         removeUserFromFeed:(state,action)=>{
                 const newFeed=state.filter((user)=>user._id!==action.payload)
                 return newFeed
+        },
+        clearFeed:()=>{
+            return [];
         }
     }
 })
 
-export const {addFeed,removeUserFromFeed}=feedSlice.actions
+export const {addFeed,removeUserFromFeed,clearFeed}=feedSlice.actions
 export default feedSlice.reducer

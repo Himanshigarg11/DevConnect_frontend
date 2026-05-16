@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -28,6 +30,7 @@ const Signup = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate=useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -48,21 +51,18 @@ const Signup = () => {
           age: Number(age),
           photoURL,
           password,
-          about:bio,
-         skills: skills
-  .split(",")
-  .map((skill) => skill.trim())
-  .filter(
-    (skill) =>
-      /^[A-Za-z+#. ]+$/.test(skill) && skill !== ""
-  ),
+          about: bio,
+          skills: skills
+            .split(",")
+            .map((skill) => skill.trim())
+            .filter((skill) => /^[A-Za-z+#. ]+$/.test(skill) && skill !== ""),
         },
         { withCredentials: true },
       );
-      setSuccess("Account is created successfully!!");
-      setTimeout(()=>{
-        setSuccess("")
-      },3000)
+      //dispatch(addUser(res.data.data))
+     
+      navigate("/login")
+     
     } catch (err) {
       setSuccess("");
       setError(err?.response?.data || "something went wrong");
@@ -80,26 +80,22 @@ const Signup = () => {
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/20 blur-[120px] rounded-full"></div>
 
       {/* Main Card */}
-      <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
+      <div className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-7 shadow-2xl">
         {/* Heading */}
-        <div className="text-center">
-          <div className="flex justify-center mb-5">
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-5 rounded-full shadow-lg shadow-indigo-500/30">
-              <FaCode className="text-4xl text-white" />
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex justify-center mb-3">
+            <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-4 rounded-full shadow-lg shadow-indigo-500/30">
+              <FaCode className="text-3xl text-white" />
             </div>
           </div>
 
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
             Create Account
           </h1>
-
-          <p className="text-gray-400 mt-3 text-lg">
-            Join DevTinder and connect with developers worldwide
-          </p>
         </div>
 
         {/* Form */}
-        <form className="mt-10 space-y-6">
+        <form autoComplete="off" className="mt-5 space-y-5">
           {/* Name Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* First Name */}
@@ -150,6 +146,7 @@ const Signup = () => {
             <div className="relative">
               <input
                 type="email"
+                autoComplete="new-email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
@@ -204,6 +201,7 @@ const Signup = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
+                autoComplete="new-password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create password"
                 className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pl-14 pr-14 outline-none focus:border-indigo-500 transition"

@@ -15,9 +15,6 @@ const Feed = () => {
   const getFeed = async () => {
 
     try {
-
-      if (feed) return;
-
       const res = await axios.get(
         BASE_URL + "/feed",
         { withCredentials: true }
@@ -34,11 +31,9 @@ const Feed = () => {
 
   };
 
-  useEffect(() => {
-
+ useEffect(() => {
     getFeed();
-
-  }, []);
+},[]);
 
   
 

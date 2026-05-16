@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../utils/userSlice";
+import { clearFeed } from "../utils/feedSlice";
 import { FaUserClock } from "react-icons/fa";
 import axios from "axios";
 const NavBar = () => {
@@ -18,6 +19,7 @@ const NavBar = () => {
         { withCredentials: true },
       );
       dispatch(removeUser());
+      dispatch(clearFeed())
       return navigate("/login");
     } catch (err) {
       console.log(err);

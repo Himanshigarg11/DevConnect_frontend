@@ -8,7 +8,7 @@ const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName || "");
   const [lastName, setLastName] = useState(user.lastName || "");
   const [age, setAge] = useState(user.age || "");
-  const [gender, setGender] = useState(user.gender || "");
+  const [gender, setGender] = useState(user.gender?.toLowerCase() || "");
   const [photoUrl, setPhotoUrl] = useState(user.photoURL || "");
   const [about, setAbout] = useState(user.about || "");
   const [skills, setSkills] = useState(
@@ -44,194 +44,280 @@ const EditProfile = ({ user }) => {
         setSuccess("");
       }, 3000);
     } catch (err) {
-      setSuccess("");
-    setError(err?.response?.data?.message || "Something went wrong");
 
-      console.log(err);
-    }
+  setSuccess("");
+
+  setError(
+    err?.response?.data?.message || 
+    err?.response?.data || 
+    "Something went wrong"
+  );
+
+  console.log(err);
+
+}
   };
 
-  return (
-    <div className="min-h-screen px-4 py-10">
-      {/* MAIN CONTAINER */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        {/* LEFT SIDE - FORM */}
-        <div className="bg-base-100/80 backdrop-blur-md border border-base-300 rounded-3xl shadow-2xl p-6 md:p-8 hover:shadow-primary/20 transition-all duration-500">
-          {/* HEADING */}
-          <h1 className="text-3xl font-bold text-center text-primary mb-6">
-            Edit Profile
-          </h1>
+ return (
+  <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950 px-4 py-10 relative overflow-hidden text-white">
 
-          {/* PROFILE IMAGE */}
-          <div className="flex justify-center mb-6">
-            <img
-              src={
-                photoUrl ||
-                "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              }
-              alt="profile"
-              className="w-24 h-24 rounded-full border-4 border-primary object-cover shadow-lg hover:scale-105 transition duration-300"
-            />
+    {/* Glow Effects */}
+    <div className="absolute top-10 left-10 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full"></div>
+
+    <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500/20 blur-[120px] rounded-full"></div>
+
+    {/* Main Container */}
+    <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+      {/* LEFT SIDE */}
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 shadow-2xl">
+
+        {/* Heading */}
+        <div className="flex items-center justify-center gap-4 mb-8">
+
+          <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-4 rounded-full shadow-lg shadow-indigo-500/30">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+
           </div>
 
-          {/* INPUTS */}
-          <div className="space-y-5">
-            {/* FIRST NAME */}
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+
+            Edit Profile
+
+          </h1>
+
+        </div>
+
+        {/* Profile Image */}
+        <div className="flex justify-center mb-8">
+
+          <img
+            src={
+              photoUrl ||
+              "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            }
+            alt="profile"
+            className="w-32 h-32 rounded-full border-[5px] border-indigo-500 object-cover shadow-2xl hover:scale-105 transition-all duration-300"
+          />
+
+        </div>
+
+        {/* Form */}
+        <div className="space-y-5">
+
+          {/* Name */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
             <div>
-              <label className="font-semibold text-sm block mb-2">
+
+              <label className="text-sm text-gray-300 mb-2 block">
                 First Name
               </label>
 
               <input
                 type="text"
                 placeholder="Enter first name"
-                className="input input-bordered w-full rounded-xl focus:input-primary transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
+
             </div>
 
-            {/* LAST NAME */}
             <div>
-              <label className="font-semibold text-sm block mb-2">
+
+              <label className="text-sm text-gray-300 mb-2 block">
                 Last Name
               </label>
 
               <input
                 type="text"
                 placeholder="Enter last name"
-                className="input input-bordered w-full rounded-xl focus:input-primary transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
+
             </div>
 
-            {/* AGE + GENDER */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="font-semibold text-sm block mb-2">Age</label>
+          </div>
 
-                <input
-                  type="number"
-                  placeholder="Age"
-                  className="input input-bordered w-full rounded-xl focus:input-primary"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                />
-              </div>
+          {/* Age + Gender */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-              <div>
-                <label className="font-semibold text-sm block mb-2">
-                  Gender
-                </label>
-
-                <select
-                  className="select select-bordered w-full rounded-xl focus:select-primary"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            {/* PHOTO URL */}
             <div>
-              <label className="font-semibold text-sm block mb-2">
-                Photo URL
+
+              <label className="text-sm text-gray-300 mb-2 block">
+                Age
               </label>
 
               <input
-                type="text"
-                placeholder="Paste image URL"
-                className="input input-bordered w-full rounded-xl focus:input-primary"
-                value={photoUrl}
-                onChange={(e) => setPhotoUrl(e.target.value)}
+                type="number"
+                 min="18"
+                max="90"
+                placeholder="Enter age"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
               />
+
             </div>
 
-            {/* ABOUT */}
             <div>
-              <label className="font-semibold text-sm block mb-2">About</label>
 
-              <textarea
-                placeholder="Write about yourself..."
-                className="textarea textarea-bordered w-full h-24 rounded-xl focus:textarea-primary"
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-              ></textarea>
+              <label className="text-sm text-gray-300 mb-2 block">
+                Gender
+              </label>
+
+             <select
+  className="w-full bg-white/5 text-white border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition appearance-none"
+  value={gender}
+  onChange={(e) => setGender(e.target.value)}
+>
+
+  <option className="bg-slate-900 text-white" value="">
+    Select
+  </option>
+
+  <option className="bg-slate-900 text-white" value="male">
+    Male
+  </option>
+
+  <option className="bg-slate-900 text-white" value="female">
+    Female
+  </option>
+
+  <option className="bg-slate-900 text-white" value="other">
+    Other
+  </option>
+
+</select>
+
             </div>
 
-            {/* SKILLS */}
-            <div>
-              <label className="font-semibold text-sm block mb-2">Skills</label>
-
-              <input
-                type="text"
-                placeholder="React, NodeJS, MongoDB"
-                className="input input-bordered w-full rounded-xl focus:input-primary"
-                value={skills}
-                onChange={(e) => setSkills(e.target.value)}
-              />
-            </div>
-
-            {/* ERROR */}
-            {error && (
-              <p className="text-red-500 text-center font-semibold">{error}</p>
-            )}
-
-            {success && (
-              <div role="alert" className="alert alert-success mt-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 shrink-0 stroke-current"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-
-                <span>{success}</span>
-              </div>
-            )}
-
-            {/* BUTTON */}
-            <button
-              className="btn btn-primary w-full rounded-xl text-base hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
-              onClick={handleEdit}
-            >
-              Save Profile
-            </button>
           </div>
-        </div>
 
-        {/* RIGHT SIDE - LIVE PREVIEW */}
-        <div className="flex justify-center lg:sticky lg:top-24">
-          <div className="hover:scale-[1.02] transition-all duration-500">
-            <UserCard
-              user={{
-                firstName,
-                lastName,
-                age,
-                gender,
-                photoUrl,
-                about,
-                skills: skills.split(","),
-              }}
+          {/* Photo URL */}
+          <div>
+
+            <label className="text-sm text-gray-300 mb-2 block">
+              Profile Photo URL
+            </label>
+
+            <input
+              type="text"
+              placeholder="Paste image URL"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition"
+              value={photoUrl}
+              onChange={(e) => setPhotoUrl(e.target.value)}
             />
+
           </div>
+
+          {/* About */}
+          <div>
+
+            <label className="text-sm text-gray-300 mb-2 block">
+              About
+            </label>
+
+            <textarea
+              placeholder="Write about yourself..."
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 h-28 outline-none resize-none focus:border-indigo-500 transition"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+            ></textarea>
+
+          </div>
+
+          {/* Skills */}
+          <div>
+
+            <label className="text-sm text-gray-300 mb-2 block">
+              Skills
+            </label>
+
+            <input
+              type="text"
+              placeholder="React, NodeJS, MongoDB"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-indigo-500 transition"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+            />
+
+          </div>
+
+          {/* Error */}
+          {
+            error && (
+              <p className="text-red-400 text-sm font-medium">
+                {error}
+              </p>
+            )
+          }
+
+          {/* Success */}
+          {
+            success && (
+              <p className="text-green-400 text-sm font-medium">
+                {success}
+              </p>
+            )
+          }
+
+          {/* Button */}
+          <button
+            className="w-full h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-lg hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-indigo-500/20"
+            onClick={handleEdit}
+          >
+
+            Save Profile
+
+          </button>
+
         </div>
+
       </div>
+
+      {/* RIGHT SIDE */}
+      <div className="flex justify-center lg:sticky lg:top-10">
+
+        <div className="hover:scale-[1.02] transition-all duration-500">
+
+          <UserCard
+            user={{
+              firstName,
+              lastName,
+              age,
+              gender,
+              photoUrl,
+              about,
+              skills: skills.split(","),
+            }}
+          />
+
+        </div>
+
+      </div>
+
     </div>
-  );
+
+  </div>
+);
 };
 
 export default EditProfile;
