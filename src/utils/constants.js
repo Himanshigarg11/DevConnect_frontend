@@ -1,1 +1,1 @@
-export const BASE_URL = "https://devconnect-da4c.onrender.com";
+const BASE_URL = "https://devconnect-da4c.onrender.com";
