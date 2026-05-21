@@ -63,7 +63,7 @@ const PasswordChange = () => {
             Change Password
           </h1>
 
-          <p className="text-gray-400 mt-2">Secure your DevTinder account</p>
+          <p className="text-gray-400 mt-2">Secure your DevConnect account</p>
         </div>
 
         {/* Form */}

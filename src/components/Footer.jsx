@@ -13,7 +13,7 @@ const Footer = () => {
           <span>💻</span>
 
           <p>
-            © 2026 DevTinder. All rights reserved.
+            © 2026 DevConnect. All rights reserved.
           </p>
 
         </div>

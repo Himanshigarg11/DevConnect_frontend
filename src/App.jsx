@@ -11,6 +11,7 @@ import PasswordChange from "./components/PasswordChange";
 import Signup from "./components/Signup";
 import Connections from "./components/Connections";
 import Request from "./components/Request";
+import Premium from "./components/Premium";
 import { Toaster } from "react-hot-toast";
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
               <Route path="profile" element={<Profile />} />
             <Route path="signup" element={<Signup />} />
             <Route path="connections" element={<Connections />} />
+             <Route path="premium" element={<Premium />} />
             <Route path="request" element={<Request />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>

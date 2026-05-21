@@ -37,7 +37,7 @@ const NavBar = () => {
           <div className="text-3xl">👩‍💻</div>
 
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition duration-300">
-            DevTinder
+            DevConnect
           </h1>
         </Link>
 
@@ -90,6 +90,12 @@ const NavBar = () => {
                 <Link to="/request"
                  className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300">📩 Requests</Link>
               </li>
+
+            <li className="mb-1">
+                <Link to="/premium"
+                 className="rounded-xl hover:bg-indigo-500/20 hover:text-indigo-300">💲Premium Membership</Link>
+              </li>
+
 
               <li className="mb-1">
                 <Link

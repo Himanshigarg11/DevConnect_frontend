@@ -59,7 +59,7 @@ const Connections = () => {
             </h1>
 
             <p className="text-gray-400 mt-2 text-lg">
-              People you've connected with on DevTinder
+              People you've connected with on DevConnect
             </p>
 
           </div>
@@ -93,7 +93,7 @@ const Connections = () => {
       </h2>
 
       <p className="text-gray-500 mt-3">
-        Start connecting with developers on DevTinder 🚀
+        Start connecting with developers on DevConnect 🚀
       </p>
 
     </div>

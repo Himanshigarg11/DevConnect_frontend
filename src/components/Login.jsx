@@ -58,7 +58,7 @@ const Login = () => {
       </div>
 
       <p className="text-gray-400 text-center mb-8 text-lg">
-        Welcome back to DevTinder
+        Welcome back to DevConnect
       </p>
 
       {/* Email */}

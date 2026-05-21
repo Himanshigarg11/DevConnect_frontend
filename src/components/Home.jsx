@@ -28,7 +28,7 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <div className="text-3xl">🧑‍💻</div>
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            DevTinder
+            <span>DevConnect</span>
           </h1>
         </div>
 
@@ -67,7 +67,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-xl mb-10">
-            DevTinder helps developers connect, collaborate, and build amazing
+            DevConnect helps developers connect, collaborate, and build amazing
             projects together. Meet frontend, backend, AI, and full-stack
             developers from around the world.
           </p>

@@ -38,7 +38,7 @@ const Settings = () => {
           </h1>
 
           <p className="text-gray-400 mt-2 text-lg">
-            Manage your DevTinder account and preferences.
+            Manage your DevConnect account and preferences.
           </p>
 
         </div>
