@@ -175,7 +175,7 @@ const Connections = () => {
 
                 <button className="flex-1 h-12 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 font-semibold hover:scale-[1.02] transition-all duration-300">
 
-                  Chat
+                  Message
 
                 </button>
 
