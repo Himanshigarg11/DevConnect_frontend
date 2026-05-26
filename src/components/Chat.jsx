@@ -1,11 +1,11 @@
  import React from 'react'
  import { useParams } from 'react-router-dom'
- const chat = () => {
+ const  Chat = () => {
     const {targetUserId} =useParams();
     console.log(targetUserId)
    return (
-     <div>chat</div>
+     <div>Chat</div>
    )
  }
  
- export default chat
+ export default Chat
