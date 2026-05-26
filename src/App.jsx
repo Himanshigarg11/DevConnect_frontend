@@ -15,7 +15,6 @@ import Premium from "./components/Premium";
 import { Toaster } from "react-hot-toast";
 import GoldPremiumPage from "./components/GoldPremiumPage";
 import SilverPremiumPage from "./components/SilverPremiumPage";
-import Chat from "./components/Chat";
 import PremiumChat from "./components/PremiumChat";
 function App() {
   return (
