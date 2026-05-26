@@ -100,98 +100,116 @@ const Connections = () => {
     </div>
 
   ) : (
-          filteredConnections.map((user) => (
+         filteredConnections.map((user) => (
 
-            <div
-              key={user._id}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl hover:scale-[1.02] transition-all duration-300"
-            >
+  <div
+    key={user._id}
+    className="group bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-xl hover:border-indigo-500/40 hover:shadow-indigo-500/10 transition-all duration-300"
+  >
 
-              {/* Top */}
-              <div className="flex items-center gap-4">
+    {/* Top Section */}
+    <div className="flex items-start gap-4">
 
-                <img
-                  src={user.photoURL}
-                  alt="profile"
-                  className="w-24 h-24 rounded-full object-cover border-4 border-indigo-500"
-                />
+      {/* Profile Image */}
+      <img
+        src={user.photoURL}
+        alt="profile"
+        className="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-500"
+      />
 
-                <div>
+      {/* User Info */}
+      <div className="flex-1 min-w-0">
 
-                  <h2 className="text-2xl font-bold">
-                    {user.firstName} {user.lastName}
-                  </h2>
+        <div className="flex items-center justify-between">
 
-                  <div className="flex items-center gap-2 text-gray-400 mt-1">
+          <h2 className="text-xl font-bold truncate">
+            {user.firstName} {user.lastName}
+          </h2>
 
-                    <FaMapMarkerAlt />
+          <div className="w-3 h-3 rounded-full bg-green-400 shadow-lg shadow-green-400/50"></div>
 
-                    <span>{user.location}</span>
+        </div>
 
-                  </div>
+        {/* Location */}
+        <div className="flex items-center gap-2 text-gray-400 mt-1 text-sm">
 
-                </div>
+          <FaMapMarkerAlt className="text-indigo-400" />
 
-              </div>
+          <span>
+            {user.location || "Developer"}
+          </span>
 
-              {/* About */}
-              <p className="text-gray-300 mt-5 leading-relaxed">
-                {user.about}
-              </p>
+        </div>
 
-              {/* Skills */}
-              <div className="flex flex-wrap gap-3 mt-5">
+        {/* About */}
+        <p className="text-gray-300 text-sm mt-3 line-clamp-2 leading-relaxed">
 
-                {user.skills.map((skill, index) => (
+          {user.about}
 
-                  <div
-                    key={index}
-                    className="bg-indigo-500/20 text-indigo-300 px-4 py-2 rounded-full text-sm font-medium"
-                  >
+        </p>
 
-                    {skill}
+      </div>
 
-                  </div>
+    </div>
 
-                ))}
+    {/* Skills */}
+    <div className="flex flex-wrap gap-2 mt-5">
 
-              </div>
+      {user.skills?.slice(0, 4).map((skill, index) => (
 
-              {/* Email */}
-              <div className="flex items-center gap-3 mt-6 text-gray-400">
+        <div
+          key={index}
+          className="px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium"
+        >
 
-                <FaEnvelope />
+          {skill}
 
-                <span className="text-sm">
-                  {user.emailID}
-                </span>
+        </div>
 
-              </div>
+      ))}
 
-              {/* Buttons */}
-              <div className="flex gap-4 mt-7">
+    </div>
 
-                <Link to={"/chat/"+user._id}>
+    {/* Email */}
+    <div className="flex items-center gap-2 mt-5 text-gray-400 text-sm">
 
-                <button className="flex-1 h-12 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 font-semibold hover:scale-[1.02] transition-all duration-300">
+      <FaEnvelope className="text-indigo-400" />
 
-                  Message
+      <span className="truncate">
+        {user.emailID}
+      </span>
 
-                </button>
+    </div>
 
-                </Link>
+    {/* Buttons */}
+    <div className="flex gap-3 mt-6">
 
-                <button className="w-12 h-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition">
+      {/* Message */}
+      <Link
+        to={"/chat/" + user._id}
+        className="flex-1"
+      >
 
-                  <FaUserFriends />
+        <button className="w-full h-11 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 font-semibold hover:opacity-90 transition-all duration-300">
 
-                </button>
+          Message
 
-              </div>
+        </button>
 
-            </div>
+      </Link>
 
-          ))
+      {/* View Profile */}
+      <button className="h-11 px-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 font-medium">
+
+        Profile
+
+      </button>
+
+    </div>
+
+  </div>
+
+))
         )}
 
         </div>
