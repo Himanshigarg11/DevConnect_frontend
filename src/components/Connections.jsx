@@ -11,7 +11,6 @@ import { useDispatch,useSelector } from "react-redux";
 import axios from "axios";
 import { addConnections } from "../utils/connectionSlice";
 import { Link } from "react-router-dom";
-import PremiumChat from "./PremiumChat";
 
 const Connections = () => {
    const dispatch = useDispatch();
