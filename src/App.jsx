@@ -13,6 +13,8 @@ import Connections from "./components/Connections";
 import Request from "./components/Request";
 import Premium from "./components/Premium";
 import { Toaster } from "react-hot-toast";
+import GoldPremiumPage from "./components/GoldPremiumPage";
+import SilverPremiumPage from "./components/SilverPremiumPage";
 function App() {
   return (
     <>
@@ -32,6 +34,8 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="connections" element={<Connections />} />
              <Route path="premium" element={<Premium />} />
+              <Route path="GoldPremiumPage" element={<GoldPremiumPage />} />
+               <Route path="silverPremiumPage" element={<SilverPremiumPage />} />
             <Route path="request" element={<Request />} />
             
           </Route>
