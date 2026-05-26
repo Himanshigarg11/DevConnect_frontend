@@ -170,11 +170,15 @@ const Connections = () => {
               {/* Buttons */}
               <div className="flex gap-4 mt-7">
 
+                <Link to={"/chat/"+user._id}>
+
                 <button className="flex-1 h-12 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 font-semibold hover:scale-[1.02] transition-all duration-300">
 
-                  Message
+                  Chat
 
                 </button>
+
+                </Link>
 
                 <button className="w-12 h-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 transition">
 
