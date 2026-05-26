@@ -3,8 +3,18 @@ import { Crown, Check, Zap } from "lucide-react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 const Premium = () => {
-
-
+  const [isUserPremium, setIsUserPremium]=useState(false)
+   const verifyPremiumUser=async ()=>{
+   try{
+const res=await axios.get(BASE_URL+"/premium/verify",{withCredentials:true})
+if(res.data.isPremium){
+      setIsUserPremium(true)
+}
+   }
+   catch(err){
+     console.log(err);
+   }
+   }
 
   const plans = [
     {
@@ -60,19 +70,20 @@ const Premium = () => {
     },
     "theme": {
         "color": "#3399cc"
-    }
+    },
+    "handler":verifyPremiumUser
 };
  console.log(order);
       const rzp=new window.Razorpay(options);
       rzp.open();
    }
    catch(err){
-
+           console.log(err);
    }
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-gray-900 text-white py-16 px-6">
+  return isUserPremium?("you are already a premium user"):(
+   <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-gray-900 text-white py-16 px-6">
 
       {/* Heading */}
       <div className="text-center mb-16">
