@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import GoldPremiumPage from "./components/GoldPremiumPage";
 import SilverPremiumPage from "./components/SilverPremiumPage";
 import Chat from "./components/Chat";
+import PremiumChat from "./components/PremiumChat";
 function App() {
   return (
     <>
@@ -37,7 +38,7 @@ function App() {
              <Route path="premium" element={<Premium />} />
               <Route path="GoldPremiumPage" element={<GoldPremiumPage />} />
                <Route path="silverPremiumPage" element={<SilverPremiumPage />} />
-              <Route path="chat/:targetUserId" element={<Chat/>} />
+              <Route path="chat/:targetUserId" element={<PremiumChat/>} />
             <Route path="request" element={<Request />} />
             
           </Route>
