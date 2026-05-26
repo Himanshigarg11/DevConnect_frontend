@@ -16,6 +16,10 @@ if(res.data.isPremium){
    }
    }
 
+   useEffect(()=>{
+         verifyPremiumUser()
+ },[])
+
   const plans = [
     {
       name: "Dev Silver",
